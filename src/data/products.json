@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone",
+    "category": "Electronics",
+    "price": 599.99,
+    "stock": 25
+  },
+  {
+    "id": 2,
+    "name": "Laptop",
+    "category": "Electronics",
+    "price": 999.99,
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "name": "Headphones",
+    "category": "Accessories",
+    "price": 199.99,
+    "stock": 50
+  },
+  {
+    "id": 4,
+    "name": "Smartwatch",
+    "category": "Wearables",
+    "price": 149.99,
+    "stock": 40
+  },
+  {
+    "id": 5,
+    "name": "Tablet",
+    "category": "Electronics",
+    "price": 399.99,
+    "stock": 30
+  },
+  {
+    "id": 6,
+    "name": "Wireless Mouse",
+    "category": "Accessories",
+    "price": 29.99,
+    "stock": 100
+  },
+  {
+    "id": 7,
+    "name": "Keyboard",
+    "category": "Accessories",
+    "price": 49.99,
+    "stock": 75
+  },
+  {
+    "id": 8,
+    "name": "Bluetooth Speaker",
+    "category": "Accessories",
+    "price": 89.99,
+    "stock": 60
+  },
+  {
+    "id": 9,
+    "name": "Camera",
+    "category": "Electronics",
+    "price": 599.99,
+    "stock": 20
+  },
+  {
+    "id": 10,
+    "name": "Smart TV",
+    "category": "Electronics",
+    "price": 799.99,
+    "stock": 10
+  }
+]
