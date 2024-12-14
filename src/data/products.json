@@ -1,29 +1,15 @@
 [
   {
-    "id": 1,
-    "title": "Smartphone",
-    "description": "A high-performance smartphone with a sleek design.",
-    "code": "SPH-001",
-    "price": 599.99,
-    "status": true,
-    "stock": 25,
-    "category": "Electronics",
-    "thumbnails": [
-      "smartphone_thumbnail1.jpg",
-      "smartphone_thumbnail2.jpg"
-    ]
-  },
-  {
     "id": 2,
     "title": "Laptop",
     "description": "A powerful laptop with fast processing and long battery life.",
     "code": "LAP-001",
-    "price": 999.99,
+    "price": 1000,
     "status": true,
     "stock": 15,
     "category": "Electronics",
     "thumbnails": [
-      "laptop_thumbnail1.jpg",
+      "laptop_thumbnail10.jpg",
       "laptop_thumbnail2.jpg"
     ]
   },
@@ -186,6 +172,20 @@
     "title": "Monitor3",
     "description": "Monitor color black2",
     "code": "M-004",
+    "price": 640,
+    "status": true,
+    "stock": 3,
+    "category": "Electronics",
+    "thumbnails": [
+      "monitor_thumbnail1.jpg",
+      "monitor_thumbnail2.jpg"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Monitor5",
+    "description": "Monitor color black2",
+    "code": "M-005",
     "price": 640,
     "status": true,
     "stock": 3,

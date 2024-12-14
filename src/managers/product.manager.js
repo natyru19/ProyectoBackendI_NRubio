@@ -40,7 +40,7 @@ class ProductManager {
         const product = arrayProducts.find(item => item.id === id);
 
         if(!product) {
-            return "El producto no se encontró";
+            return false;
         }else {
             return product;
         }
@@ -50,7 +50,7 @@ class ProductManager {
         try {
             await fs.writeFile(this.path, JSON.stringify(arrayProducts, null, 2));
         } catch (error) {
-            console.log("Tenemos un error al guardar el archivo");
+            console.log(error);
         }
     }
 
@@ -60,7 +60,7 @@ class ProductManager {
             const arrayProducts = JSON.parse(resp);
             return arrayProducts;
         } catch (error) {
-            console.log("Tenemos un error al leer el archivo")
+            console.log(error);
         }
     }
 }
