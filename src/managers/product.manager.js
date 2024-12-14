@@ -1,10 +1,9 @@
 //FileSystem con promesas
-import {promises as fs} from 'fs';
+import { promises as fs } from 'fs';
 
 // Clase ProductManager con su constructor
 
 class ProductManager {
-    static lastId = 0;
     constructor(path) {
         this.products = [];
         this.path = path;
@@ -12,35 +11,23 @@ class ProductManager {
 
     // Agregar un producto
 
-    async addProduct({title, description, price, img, code, stock}) {
+    async addProduct(newProd) {
 
-        //Se lee el archivo y se guarda el array con los productos
         const arrayProducts = await this.readFile();
 
-        if(!title || !description || !price || !img || !code || !stock) {
+        if(!newProd.title || !newProd.description || !newProd.code || !newProd.price || !newProd.status || !newProd.stock || !newProd.category) {
             console.log("Todos los campos son obligatorios");
-            return;
+            return false;
         }
 
-        if(arrayProducts.some(item => item.code === code)) {
+        if(arrayProducts.some(item => item.code === newProd.code)) {
             console.log("El código debe ser único");
+            return false;
         }
 
-        // Luego de pasar por todas las validaciones, se crea el objeto
-        const newProduct = {
-            id: ++ProductManager.lastId,
-            title,
-            description,
-            price,
-            img,
-            code,
-            stock
-        }
-
-        arrayProducts.push(newProduct);
-
-        // Una vez agregado el nuevo producto al array, se guarda el array al archivo
+        arrayProducts.push(newProd);
         await this.saveFile(arrayProducts);
+        return true;
     }
 
     async getProducts() {

@@ -1,72 +1,198 @@
 [
   {
     "id": 1,
-    "name": "Smartphone",
-    "category": "Electronics",
+    "title": "Smartphone",
+    "description": "A high-performance smartphone with a sleek design.",
+    "code": "SPH-001",
     "price": 599.99,
-    "stock": 25
+    "status": true,
+    "stock": 25,
+    "category": "Electronics",
+    "thumbnails": [
+      "smartphone_thumbnail1.jpg",
+      "smartphone_thumbnail2.jpg"
+    ]
   },
   {
     "id": 2,
-    "name": "Laptop",
-    "category": "Electronics",
+    "title": "Laptop",
+    "description": "A powerful laptop with fast processing and long battery life.",
+    "code": "LAP-001",
     "price": 999.99,
-    "stock": 15
+    "status": true,
+    "stock": 15,
+    "category": "Electronics",
+    "thumbnails": [
+      "laptop_thumbnail1.jpg",
+      "laptop_thumbnail2.jpg"
+    ]
   },
   {
     "id": 3,
-    "name": "Headphones",
-    "category": "Accessories",
+    "title": "Headphones",
+    "description": "Noise-cancelling headphones with high-quality sound.",
+    "code": "HP-001",
     "price": 199.99,
-    "stock": 50
+    "status": true,
+    "stock": 50,
+    "category": "Accessories",
+    "thumbnails": [
+      "headphones_thumbnail1.jpg",
+      "headphones_thumbnail2.jpg"
+    ]
   },
   {
     "id": 4,
-    "name": "Smartwatch",
-    "category": "Wearables",
+    "title": "Smartwatch",
+    "description": "A stylish smartwatch with fitness tracking and notifications.",
+    "code": "SW-001",
     "price": 149.99,
-    "stock": 40
+    "status": true,
+    "stock": 40,
+    "category": "Wearables",
+    "thumbnails": [
+      "smartwatch_thumbnail1.jpg",
+      "smartwatch_thumbnail2.jpg"
+    ]
   },
   {
     "id": 5,
-    "name": "Tablet",
-    "category": "Electronics",
+    "title": "Tablet",
+    "description": "A versatile tablet with a large screen and fast performance.",
+    "code": "TAB-001",
     "price": 399.99,
-    "stock": 30
+    "status": true,
+    "stock": 30,
+    "category": "Electronics",
+    "thumbnails": [
+      "tablet_thumbnail1.jpg",
+      "tablet_thumbnail2.jpg"
+    ]
   },
   {
     "id": 6,
-    "name": "Wireless Mouse",
-    "category": "Accessories",
+    "title": "Wireless Mouse",
+    "description": "A smooth and responsive wireless mouse.",
+    "code": "WM-001",
     "price": 29.99,
-    "stock": 100
+    "status": true,
+    "stock": 100,
+    "category": "Accessories",
+    "thumbnails": [
+      "wireless_mouse_thumbnail1.jpg",
+      "wireless_mouse_thumbnail2.jpg"
+    ]
   },
   {
     "id": 7,
-    "name": "Keyboard",
-    "category": "Accessories",
+    "title": "Keyboard",
+    "description": "A mechanical keyboard with customizable keys and backlighting.",
+    "code": "KB-001",
     "price": 49.99,
-    "stock": 75
+    "status": true,
+    "stock": 75,
+    "category": "Accessories",
+    "thumbnails": [
+      "keyboard_thumbnail1.jpg",
+      "keyboard_thumbnail2.jpg"
+    ]
   },
   {
     "id": 8,
-    "name": "Bluetooth Speaker",
-    "category": "Accessories",
+    "title": "Bluetooth Speaker",
+    "description": "A portable Bluetooth speaker with high-quality sound.",
+    "code": "BS-001",
     "price": 89.99,
-    "stock": 60
+    "status": true,
+    "stock": 60,
+    "category": "Accessories",
+    "thumbnails": [
+      "bluetooth_speaker_thumbnail1.jpg",
+      "bluetooth_speaker_thumbnail2.jpg"
+    ]
   },
   {
     "id": 9,
-    "name": "Camera",
-    "category": "Electronics",
+    "title": "Camera",
+    "description": "A high-resolution camera with advanced features for photography.",
+    "code": "CAM-001",
     "price": 599.99,
-    "stock": 20
+    "status": true,
+    "stock": 20,
+    "category": "Electronics",
+    "thumbnails": [
+      "camera_thumbnail1.jpg",
+      "camera_thumbnail2.jpg"
+    ]
   },
   {
     "id": 10,
-    "name": "Smart TV",
-    "category": "Electronics",
+    "title": "Smart TV",
+    "description": "A 4K Smart TV with streaming capabilities and vibrant colors.",
+    "code": "TV-001",
     "price": 799.99,
-    "stock": 10
+    "status": true,
+    "stock": 10,
+    "category": "Electronics",
+    "thumbnails": [
+      "smart_tv_thumbnail1.jpg",
+      "smart_tv_thumbnail2.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Monitor",
+    "description": "Monitor color black",
+    "code": "M-001",
+    "price": 640,
+    "status": true,
+    "stock": 3,
+    "category": "Electronics",
+    "thumbnails": [
+      "monitor_thumbnail1.jpg",
+      "monitor_thumbnail2.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Monitor2",
+    "description": "Monitor color black2",
+    "code": "M-002",
+    "price": 640,
+    "status": true,
+    "stock": 3,
+    "category": "Electronics",
+    "thumbnails": [
+      "monitor_thumbnail1.jpg",
+      "monitor_thumbnail2.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Monitor3",
+    "description": "Monitor color black2",
+    "code": "M-003",
+    "price": 640,
+    "status": true,
+    "stock": 3,
+    "category": "Electronics",
+    "thumbnails": [
+      "monitor_thumbnail1.jpg",
+      "monitor_thumbnail2.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Monitor3",
+    "description": "Monitor color black2",
+    "code": "M-004",
+    "price": 640,
+    "status": true,
+    "stock": 3,
+    "category": "Electronics",
+    "thumbnails": [
+      "monitor_thumbnail1.jpg",
+      "monitor_thumbnail2.jpg"
+    ]
   }
 ]

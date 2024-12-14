@@ -1,40 +1,23 @@
-// Módulo de Express
 import express from 'express';
+import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
 
-// Aplicación de Express
 const app = express();
+const PUERTO = 8080;
 
-// Se importa el ProductManager
-import ProductManager from './managers/product-manager.js';
-const manager = new ProductManager('./src/data/products.json');
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Rutas
 
-app.get("/", (req, res) => {
-    res.send("Bienvidos a la app");
-});
+app.use("/api/products", productsRouter);
+app.use("/api/carts", cartsRouter);
 
-app.get("/products", async (req, res) => {
-    let limit = req.query.limit;
-    const products = await manager.getProducts();
-
-    if(limit) {
-        res.send(products.slice(0, limit));
-    }else {
-        res.send(products);
-    }
-})
-
-app.get("/products/:pid", async (req, res) => {
-    let id = req.params.pid;
-    const searchedProduct = await manager.getProductById(parseInt(id));
-    res.send(searchedProduct);
-})
+app.use("/static", express.static("src/public"));
 
 // La app escuchando en el puerto 8080 (el que se le indica)
 
-const PUERTO = 8080;
-
 app.listen(PUERTO, () => {
-    console.log(`Server listening on port ${PUERTO}`);
+    console.log(`Servidor escuchando en el puerto ${PUERTO}`);
 })
