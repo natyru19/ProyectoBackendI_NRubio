@@ -1,7 +1,5 @@
-//FileSystem con promesas
 import { promises as fs } from 'fs';
 
-// Clase ProductManager con su constructor
 
 class ProductManager {
     constructor(path) {
@@ -9,14 +7,23 @@ class ProductManager {
         this.path = path;
     }
 
-    // Agregar un producto
 
+    async init(){
+        try{
+            const exists = await fs.access(this.path);
+        }catch(err){
+            console.log("Se está creando un nuevo archivo: products")
+            await fs.writeFile(this.path, JSON.stringify([]));
+        }
+    }
+    
     async addProduct(newProd) {
 
+        
         const arrayProducts = await this.readFile();
 
         if(!newProd.title || !newProd.description || !newProd.code || !newProd.price || !newProd.status || !newProd.stock || !newProd.category) {
-            console.log("Todos los campos son obligatorios");
+            console.log("Falta agregar algún campo");
             return false;
         }
 
@@ -64,5 +71,6 @@ class ProductManager {
         }
     }
 }
+
 
 export default ProductManager;

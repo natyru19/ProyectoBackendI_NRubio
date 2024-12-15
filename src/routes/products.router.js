@@ -1,10 +1,12 @@
 import { Router } from "express";
-const productsRouter = Router();
 import ProductManager from '../managers/product.manager.js'
-import IdManager from "../managers/lastId.manager.js";
+import prodIdManager from "../managers/productId.manager.js";
 
+const productsRouter = Router();
 const productManager = new ProductManager('./src/data/products.json');
-const idManager = new IdManager('./src/data/lastId.json');
+productManager.init();
+const productIdManager = new prodIdManager('./src/data/productLastId.json');
+productIdManager.init();
 
 
 productsRouter.get("/", async (req, res) => {
@@ -34,11 +36,11 @@ productsRouter.get("/:pid", async (req, res) => {
 
 productsRouter.post("/", async(req, res) => {
     let newProduct = req.body;
-    const lastId = await idManager.readLastId();
+    const lastId = productIdManager.readLastId();
     newProduct = {id: lastId+1, ...newProduct};
     let success = await productManager.addProduct(newProduct);
     if(success){
-        idManager.saveLastId()
+        productIdManager.saveLastId()
         res.status(201).send({error: null, mensaje: "Producto creado correctamente", data: newProduct});
     }else{
         res.status(400).send({error: "Hubo error al agregar", mensaje: "Producto no agregado", data: []});
@@ -50,9 +52,9 @@ productsRouter.put("/:pid", async(req, res) => {
     
     let searchedProduct = await productManager.getProductById(id);
     let modProduct = req.body;
-
+    
     if(searchedProduct){
-        searchedProduct = {id: searchedProduct.id, ...modProduct};
+        searchedProduct = {id: searchedProduct.id, title: modProduct.title, description: modProduct.description, code: modProduct.code, price: modProduct.price, status: modProduct.status, stock: modProduct.stock, category: modProduct.category, thumbnails: modProduct.thumbnails };
         let allProducts = await productManager.getProducts();
         let searchedProductIndex = allProducts.findIndex((prod) => prod.id === id);
         allProducts[searchedProductIndex] = searchedProduct;
@@ -80,5 +82,6 @@ productsRouter.delete("/:pid", async(req, res) => {
         res.status(400).send({error: `El producto con el ID ${id} no existe`, mensaje: `No se pudo borrar el producto`, data: []});
     }
 });
+
 
 export default productsRouter;

@@ -2,6 +2,13 @@
 
 > Primera entrega - Comisión 70410
 
+
+Funcionalidad del carrito:<br>
+- Se puede agregar un producto con un ID proporcinado al carrito con un ID proporcionado.<br>
+- Se puede crear un nuevo carrito.<br>
+- Se pueden listar los productos del carrito con un ID proporcionado.<br>
+- Funcionamiento de GET, POST de carrito.<br>
+
 CRUD de productos finalizado:<br>
 - Funcionamiento de PUT, DELETE de productos.<br>
 
