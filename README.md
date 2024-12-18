@@ -3,6 +3,10 @@
 > Primera entrega - Comisión 70410
 
 
+Ultimos ajustes:<br>
+- Realización de pruebas para ver el funcionamiento completo de todos los endpoints.<br>
+- Modificación en el README y los mensajes de error para que quede más prolijo.<br>
+
 Funcionalidad del carrito:<br>
 - Se puede agregar un producto con un ID proporcinado al carrito con un ID proporcionado.<br>
 - Se puede crear un nuevo carrito.<br>

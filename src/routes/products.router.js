@@ -17,7 +17,7 @@ productsRouter.get("/", async (req, res) => {
     if(limit) {
         res.send(products.slice(0, limit));
     }else {
-        res.status(200).send({error: null, mensaje: "La solicitud ha sido exitosa", data: products});
+        res.status(200).send({error: null, data: products});
     }
 });
 
@@ -29,7 +29,7 @@ productsRouter.get("/:pid", async (req, res) => {
     if(searchedProduct){
         res.status(200).send({error: null, mensaje: `Se encontró el producto con el ID ${id}`, data: searchedProduct});
     } else {
-        res.status(400).send({error: `El producto con el ID ${id} no existe`, mensaje: `No se encontró el producto`, data: []});
+        res.status(400).send({error: `El producto con el ID ${id} no existe`, data: []});
     }
 
 })
@@ -41,9 +41,9 @@ productsRouter.post("/", async(req, res) => {
     let success = await productManager.addProduct(newProduct);
     if(success){
         productIdManager.saveLastId()
-        res.status(201).send({error: null, mensaje: "Producto creado correctamente", data: newProduct});
+        res.status(201).send({error: null, data: newProduct});
     }else{
-        res.status(400).send({error: "Hubo error al agregar", mensaje: "Producto no agregado", data: []});
+        res.status(400).send({error: "Hubo error al agregar", data: []});
     }
 });
 
@@ -54,15 +54,27 @@ productsRouter.put("/:pid", async(req, res) => {
     let modProduct = req.body;
     
     if(searchedProduct){
-        searchedProduct = {id: searchedProduct.id, title: modProduct.title, description: modProduct.description, code: modProduct.code, price: modProduct.price, status: modProduct.status, stock: modProduct.stock, category: modProduct.category, thumbnails: modProduct.thumbnails };
+        
+        searchedProduct = {
+            id: searchedProduct.id,
+            title: modProduct.title,
+            description: modProduct.description,
+            code: modProduct.code,
+            price: modProduct.price,
+            status: modProduct.status,
+            stock: modProduct.stock,
+            category: modProduct.category,
+            thumbnails: modProduct.thumbnails
+        };
+
         let allProducts = await productManager.getProducts();
         let searchedProductIndex = allProducts.findIndex((prod) => prod.id === id);
         allProducts[searchedProductIndex] = searchedProduct;
         await productManager.saveFile(allProducts);
 
-        res.status(200).send({error: null, mensaje: `Se modificó el producto con el ID ${id}`, data: searchedProduct});
+        res.status(200).send({error: null, data: searchedProduct});
     } else {
-        res.status(400).send({error: `El producto con el ID ${id} no existe`, mensaje: `No se pudo modificar el producto`, data: []});
+        res.status(400).send({error: `El producto con el ID ${id} no existe`, data: []});
     }
         
 });
@@ -77,9 +89,9 @@ productsRouter.delete("/:pid", async(req, res) => {
         allProducts.splice(searchedProductIndex,1); 
         await productManager.saveFile(allProducts);
 
-        res.status(200).send({error: null, mensaje: `Se borró el producto con el ID ${id}`, data: searchedProduct});
+        res.status(200).send({error: null, data: searchedProduct});
     } else {
-        res.status(400).send({error: `El producto con el ID ${id} no existe`, mensaje: `No se pudo borrar el producto`, data: []});
+        res.status(400).send({error: `El producto con el ID ${id} no existe`, data: []});
     }
 });
 

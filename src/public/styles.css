@@ -1,4 +1,30 @@
+body {
+    background-color: #F1F0E8;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 h1 {
-    color: red;
+    color: #89A8B2;
     text-align: center;
+}
+
+p {
+    margin-left: 5px;
+    color: #4A628A;
+}
+
+h2 {
+    margin-left: 20px;
+    color: #89A8B2;
+}
+
+div {
+    background-color: #89A8B2;
+    width: 70vw;
+    align-self: center;
+    align-content: center;
+    border-radius: 10px;
+    padding: 10px;
+    color: azure;
+    margin-left: 5px;
 }

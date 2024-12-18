@@ -15,9 +15,9 @@ cartsRouter.get("/:cid", async (req, res) => {
     const searchedCart = await cartManager.getCartById(id);
 
     if(searchedCart){
-        res.status(200).send({error: null, mensaje: `Se encontró el carrito con el ID ${id}`, data: searchedCart});
+        res.status(200).send({error: null, data: searchedCart});
     } else {
-        res.status(400).send({error: `El carrito con el ID ${id} no existe`, mensaje: `No se encontró el carrito`, data: []});
+        res.status(400).send({error: `El carrito con el ID ${id} no existe`, data: []});
     }
 })
 
@@ -31,9 +31,9 @@ cartsRouter.post("/", async (req, res)=>{
     let success = await cartManager.addCart(newCart);
     if(success){
         idCartManager.saveLastId()
-        res.status(201).send({error: null, mensaje: "Carrito creado correctamente", data: newCart});
+        res.status(201).send({error: null, data: newCart});
     }else{
-        res.status(400).send({error: "Hubo error al crear el carrito", mensaje: "Carrito no creado", data: []});
+        res.status(400).send({error: "Hubo error al crear el carrito", data: []});
     }
         
 });
@@ -63,7 +63,7 @@ cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
     allCarts[searchedCartIndex] = searchedCart;
     cartManager.saveFile(allCarts);
 
-    res.status(201).send({error: null, mensaje: "Producto agregado al carrito", data: searchedCart});
+    res.status(201).send({error: null, data: searchedCart});
     
 });
 
