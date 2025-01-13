@@ -1,0 +1,17 @@
+
+<h1>Productos agregados hasta el momento: </h1>
+
+<div class="containerCards">
+    {{#each products}}
+        <div class="card">
+            <p>Nombre: {{this.title}}</p>
+            <p>Descripción: {{this.description}}</p>
+            <p>Precio: $ {{this.price}}</p>
+            <button>Comprar</button>
+        </div>
+    {{/each}}
+</div>
+    
+
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"></script>
+<script src="js/main.js"></script> --}}

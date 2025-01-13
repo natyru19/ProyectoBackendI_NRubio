@@ -1,5 +1,14 @@
 ## PROGRAMACIÓN BACKEND I
 
+
+> Segunda entrega
+
+
+Utilización de Handlebars y websocket.<br>
+- Se pueden ver todos los productos agregados hasta el momento.<br>
+- Creación de la vistas.<br>
+
+
 > Primera entrega - Comisión 70410
 
 

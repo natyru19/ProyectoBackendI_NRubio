@@ -1,0 +1,24 @@
+body {
+    background-color: #F1F0E8;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    color: #89A8B2;
+    text-align: center;
+}
+
+.card {
+    height: 160px;
+    background-color: #89A8B2;
+    border-radius: 10px;
+    border: 1px solid #89A8B2;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #4A628A;
+    font-size: 15px;
+}
