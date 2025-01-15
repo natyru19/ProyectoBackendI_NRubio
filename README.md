@@ -5,6 +5,8 @@
 
 
 Utilización de Handlebars y websocket.<br>
+- Se pueden eliminar los productos y ver la actualización en tiempo real.<br>
+- Se pueden agregar los productos a través de un formulario y ver la actualización en tiempo real.<br>
 - Se pueden ver todos los productos agregados hasta el momento.<br>
 - Creación de la vistas.<br>
 

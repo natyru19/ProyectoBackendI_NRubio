@@ -1,0 +1,25 @@
+<h2>Productos actualizados en tiempo real</h2>
+
+<div class="divForm">
+    <h3>Formulario para agregar productos</h3>
+
+    <form>
+        <input type="text" id="title" placeholder="Título">
+            <input type="text" id="description" placeholder="Descripción">
+            <input type="text" id="code" placeholder="Código">
+            <input type="number" id="price" placeholder="Precio">
+            <select id="status">
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+            <input type="number" id="stock" placeholder="Stock">
+            <input type="text" id="category" placeholder="Categoría">
+            <button type="button" id="btnAdd">Agregar</button>    
+    </form>
+</div>
+
+<div id="containerProducts"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="js/main.js"></script>

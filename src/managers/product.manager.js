@@ -1,12 +1,15 @@
 import { promises as fs } from 'fs';
+import prodIdManager from "../managers/productId.manager.js";
 
-
+const productIdManager = new prodIdManager('./src/data/productLastId.json');
 class ProductManager {
+
     constructor(path) {
         this.products = [];
         this.path = path;
     }
 
+    
 
     async init(){
         try{
@@ -21,8 +24,11 @@ class ProductManager {
 
         
         const arrayProducts = await this.readFile();
-
-        if(!newProd.title || !newProd.description || !newProd.code || !newProd.price || !newProd.status || !newProd.stock || !newProd.category) {
+        const lastId = productIdManager.readLastId();
+        newProd = {id: lastId+1, ...newProd};
+        
+        
+        if(!newProd.title || !newProd.description || !newProd.code || !newProd.price || !newProd.stock || !newProd.category) {
             console.log("Falta agregar algún campo");
             return false;
         }
@@ -32,7 +38,9 @@ class ProductManager {
             return false;
         }
 
+
         arrayProducts.push(newProd);
+        productIdManager.saveLastId()
         await this.saveFile(arrayProducts);
         return true;
     }

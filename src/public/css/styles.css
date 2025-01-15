@@ -3,7 +3,7 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-h1 {
+h1, h2, h3 {
     color: #89A8B2;
     text-align: center;
 }
@@ -21,4 +21,22 @@ h1 {
 p {
     color: #4A628A;
     font-size: 15px;
+}
+
+.divForm {
+    align-content: center;
+    justify-items: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#containerProducts #pInicial{
+    margin-top: 150px;
+    font-size: 25px;
+    text-align: center;
 }

@@ -4,9 +4,12 @@ import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
+import ProductManager from './managers/product.manager.js';
 
 const app = express();
 const PUERTO = 8080;
+const productManager = new ProductManager('./src/data/products.json');
+
 
 // Middleware
 app.use(express.json());
@@ -33,4 +36,19 @@ const httpServer = app.listen(PUERTO, () => {
     console.log(`Servidor escuchando en el puerto ${PUERTO}`);
 })
 
+// Websockets
 const io = new Server(httpServer);
+
+io.on("connection", async (socket) => {
+    console.log("Cliente conectado");
+    
+    socket.emit("products", await productManager.getProducts());
+
+    socket.on("addNewProduct", async () => {
+        io.sockets.emit("products", await productManager.getProducts());
+    });
+
+    socket.on("deleteProd", async () => {
+        socket.emit("products", await productManager.getProducts());
+    });
+});

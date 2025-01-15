@@ -36,11 +36,12 @@ productsRouter.get("/:pid", async (req, res) => {
 
 productsRouter.post("/", async(req, res) => {
     let newProduct = req.body;
-    const lastId = productIdManager.readLastId();
-    newProduct = {id: lastId+1, ...newProduct};
+    
+    if (newProduct.status==null){
+        newProduct.status = true;
+    }
     let success = await productManager.addProduct(newProduct);
     if(success){
-        productIdManager.saveLastId()
         res.status(201).send({error: null, data: newProduct});
     }else{
         res.status(400).send({error: "Hubo error al agregar", data: []});
