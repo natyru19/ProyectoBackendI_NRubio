@@ -1,6 +1,7 @@
 import { Router } from "express";
 import ProductManager from '../managers/product.manager.js'
 import prodIdManager from "../managers/productId.manager.js";
+import ProductsModel from "../models/product.model.js";
 
 const productsRouter = Router();
 const productManager = new ProductManager('./src/data/products.json');
@@ -10,14 +11,76 @@ productIdManager.init();
 
 
 productsRouter.get("/", async (req, res) => {
-    let limit = +req.query.limit;
+    const page = req.query.page || 1;
+    // //let limit = +req.query.limit;
+    const limit = +req.query.limit || 10;
     
-    const products = await productManager.getProducts();
+    
+    //const products = await productManager.getProducts();
+    try {
+        //const products = await ProductsModel.find();
+        const paginatedProduct = await ProductsModel.paginate({}, {limit, page});
+        const products = await paginatedProduct.docs
+        
+        
+        res.json({
+            status: "success",
+            payload: products,
+            totalPages: paginatedProduct.totalPages,
+            prevPage: paginatedProduct.prevPage,
+            nextPage: paginatedProduct.nextPage,
+            page: paginatedProduct.page,
+            hasPrevPage: paginatedProduct.hasPrevPage,
+            hasNextPage: paginatedProduct.hasNextPage,
+            // prevLink:
+            // nextLink: 
+        });
+        
+        
+        // if(limit) {
+        //     res.send(products.slice(0, limit));
+        // }else {
+        //     //res.status(200).send({error: null, data: products});
+        //     res.render("home", {
+        //         status: "success",
+        //         payload: products,
+        //         totalPages: products.totalPages,
+        //         prevPage: products.prevPage,
+        //         nextPage: products.nextPage,
+        //         page: products.page,
+        //         hasPrevPage: products.hasPrevPage,
+        //         hasNextPage: products.hasNextPage,
+        //         // prevLink:
+        //         // nextLink: 
+        //     });
+        // }
 
-    if(limit) {
-        res.send(products.slice(0, limit));
-    }else {
-        res.status(200).send({error: null, data: products});
+        // products = await ProductsModel.aggregate([
+        //     {
+        //         $match: {
+        //             category: "accesorios"
+        //         }
+        //     },
+        //     {
+        //        $group: {
+        //             _id: "$title",
+        //             //price: "$price",
+        //             total: {
+        //                 $sum: "$stock"
+        //             }
+        //        } 
+        //     }
+        //     // {
+        //     //     $sort: {
+        //     //         price: -1
+        //     //     }
+        //     // }
+        // ]);
+        // console.log(products);
+        
+
+    } catch (error) {
+        res.status(500).json({status: "error", error: "Hubo un error en el servidor"});
     }
 });
 
@@ -34,13 +97,15 @@ productsRouter.get("/:pid", async (req, res) => {
 
 })
 
-productsRouter.post("/", async(req, res) => {
+productsRouter.post("/", async (req, res) => {
     let newProduct = req.body;
     
     if (newProduct.status==null){
         newProduct.status = true;
     }
+    
     let success = await productManager.addProduct(newProduct);
+ 
     if(success){
         res.status(201).send({error: null, data: newProduct});
     }else{
@@ -48,7 +113,7 @@ productsRouter.post("/", async(req, res) => {
     }
 });
 
-productsRouter.put("/:pid", async(req, res) => {
+productsRouter.put("/:pid", async (req, res) => {
     let id = +req.params.pid;
     
     let searchedProduct = await productManager.getProductById(id);
@@ -80,7 +145,7 @@ productsRouter.put("/:pid", async(req, res) => {
         
 });
 
-productsRouter.delete("/:pid", async(req, res) => {
+productsRouter.delete("/:pid", async (req, res) => {
     let id = +req.params.pid;
     let searchedProduct = await productManager.getProductById(id);
     

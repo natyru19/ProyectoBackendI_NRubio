@@ -10,3 +10,21 @@
         </div>
     {{/each}}
 </div>
+
+<div class="paginate">
+    <div class="btnPaginate">
+        {{#if hasPrevPage}}
+            <a href="/products?page={{prevPage}}"> Anterior</a>
+        {{/if}}
+    </div>
+    
+    <div class="pPaginate">
+        <p>Página {{page}} de {{totalPages}}</p>
+    </div>
+
+    <div class="btnPaginate">
+        {{#if hasNextPage}}
+            <a href="/products?page={{nextPage}}"> Siguiente </a>
+        {{/if}}
+    </div>
+</div>

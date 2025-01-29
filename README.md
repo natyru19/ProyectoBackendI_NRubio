@@ -1,6 +1,15 @@
 ## PROGRAMACIÓN BACKEND I
 
 
+> Última entrega
+
+Conexión con base de datos y uso de paginación:<br>
+- Funcionamiento de paginación en /products.<br>
+- Se refactoriza /api/products a formato solicitado.<br>
+- Creación de la carpeta models con sus respectivos archivos.<br>
+- Se realiza conexión con Base de Datos MongoDB.<br>
+
+
 > Segunda entrega
 
 
@@ -14,7 +23,7 @@ Utilización de Handlebars y websocket.<br>
 > Primera entrega - Comisión 70410
 
 
-Ultimos ajustes:<br>
+Últimos ajustes:<br>
 - Realización de pruebas para ver el funcionamiento completo de todos los endpoints.<br>
 - Modificación en el README y los mensajes de error para que quede más prolijo.<br>
 

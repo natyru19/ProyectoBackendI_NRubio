@@ -1,0 +1,323 @@
+[
+  {
+    "title": "Auriculares JBL",
+    "description": "Auriculares inalámbricos con sonido claro y graves potentes.",
+    "code": "1",
+    "price": 45,
+    "status": true,
+    "stock": 20,
+    "category": "audio",
+    "thumbnails": []
+  },
+  {
+    "title": "Laptop HP",
+    "description": "Laptop con procesador i7 y 16GB de RAM.",
+    "code": "2",
+    "price": 799,
+    "status": true,
+    "stock": 10,
+    "category": "computación",
+    "thumbnails": []
+  },
+  {
+    "title": "Smartphone Samsung Galaxy",
+    "description": "Pantalla AMOLED de 6.5\" y cámara de 48MP.",
+    "code": "3",
+    "price": 350,
+    "status": true,
+    "stock": 15,
+    "category": "telefonía",
+    "thumbnails": []
+  },
+  {
+    "title": "Reloj Garmin Forerunner",
+    "description": "Reloj deportivo con GPS y monitoreo de frecuencia cardíaca.",
+    "code": "4",
+    "price": 250,
+    "status": true,
+    "stock": 8,
+    "category": "deportes",
+    "thumbnails": []
+  },
+  {
+    "title": "Auriculares Sony WH-1000XM4",
+    "description": "Auriculares con cancelación de ruido y sonido Hi-Res.",
+    "code": "5",
+    "price": 350,
+    "status": true,
+    "stock": 12,
+    "category": "audio",
+    "thumbnails": []
+  },
+  {
+    "title": "Teclado mecánico Logitech G Pro",
+    "description": "Teclado mecánico para gamers, switches de alto rendimiento.",
+    "code": "6",
+    "price": 100,
+    "status": true,
+    "stock": 30,
+    "category": "computación",
+    "thumbnails": []
+  },
+  {
+    "title": "Cámara DSLR Canon EOS 90D",
+    "description": "Cámara de 32.5 MP con grabación en 4K.",
+    "code": "7",
+    "price": 1300,
+    "status": true,
+    "stock": 5,
+    "category": "fotografía",
+    "thumbnails": []
+  },
+  {
+    "title": "Pantalla LG 27” 4K",
+    "description": "Pantalla de 27” con resolución 4K y tecnología IPS.",
+    "code": "8",
+    "price": 450,
+    "status": true,
+    "stock": 7,
+    "category": "computación",
+    "thumbnails": []
+  },
+  {
+    "title": "Altavoces Bose SoundLink",
+    "description": "Altavoces bluetooth portátiles con sonido de alta calidad.",
+    "code": "9",
+    "price": 200,
+    "status": true,
+    "stock": 25,
+    "category": "audio",
+    "thumbnails": []
+  },
+  {
+    "title": "Mochila Samsonite",
+    "description": "Mochila para laptop de 15” con compartimentos organizadores.",
+    "code": "10",
+    "price": 70,
+    "status": true,
+    "stock": 50,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "title": "Smartwatch Apple Watch Series 7",
+    "description": "Smartwatch con pantalla siempre activa y monitoreo de salud.",
+    "code": "11",
+    "price": 399,
+    "status": true,
+    "stock": 25,
+    "category": "tecnología",
+    "thumbnails": []
+  },
+  {
+    "title": "Silla Gaming DXRacer",
+    "description": "Silla ergonómica para gamers con soporte lumbar ajustable.",
+    "code": "12",
+    "price": 320,
+    "status": true,
+    "stock": 15,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "title": "Cafetera Nespresso",
+    "description": "Cafetera de cápsulas con opción de espresso y capuchino.",
+    "code": "13",
+    "price": 140,
+    "status": true,
+    "stock": 30,
+    "category": "hogar",
+    "thumbnails": []
+  },
+  {
+    "title": "Botella de agua Hidrate",
+    "description": "Botella de acero inoxidable con aislamiento para mantener bebidas frías.",
+    "code": "14",
+    "price": 25,
+    "status": true,
+    "stock": 50,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "title": "Lámpara LED Philips",
+    "description": "Lámpara LED inteligente que se puede controlar con el teléfono móvil.",
+    "code": "15",
+    "price": 45,
+    "status": true,
+    "stock": 40,
+    "category": "hogar",
+    "thumbnails": []
+  },
+  {
+    "title": "Parlante JBL Flip 5",
+    "description": "Parlante bluetooth resistente al agua y con sonido potente.",
+    "code": "16",
+    "price": 120,
+    "status": true,
+    "stock": 60,
+    "category": "audio",
+    "thumbnails": []
+  },
+  {
+    "title": "Micrófono Blue Yeti",
+    "description": "Micrófono USB ideal para podcasting y streaming.",
+    "code": "17",
+    "price": 130,
+    "status": true,
+    "stock": 35,
+    "category": "audio",
+    "thumbnails": []
+  },
+  {
+    "title": "Cargador inalámbrico Anker",
+    "description": "Cargador inalámbrico rápido para smartphones y otros dispositivos.",
+    "code": "18",
+    "price": 30,
+    "status": true,
+    "stock": 45,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "title": "Aspiradora Dyson V11",
+    "description": "Aspiradora inalámbrica con potencia de succión avanzada.",
+    "code": "19",
+    "price": 600,
+    "status": true,
+    "stock": 10,
+    "category": "hogar",
+    "thumbnails": []
+  },
+  {
+    "title": "Ebook Kindle Paperwhite",
+    "description": "Ereader con pantalla de alta resolución y luz ajustable.",
+    "code": "20",
+    "price": 130,
+    "status": true,
+    "stock": 20,
+    "category": "tecnología",
+    "thumbnails": []
+  },
+  {
+    "title": "Cámara GoPro HERO10",
+    "description": "Cámara de acción resistente al agua con grabación en 4K.",
+    "code": "21",
+    "price": 400,
+    "status": true,
+    "stock": 25,
+    "category": "fotografía",
+    "thumbnails": []
+  },
+  {
+    "title": "Bocina Sonos One",
+    "description": "Bocina inteligente con sonido de alta calidad y control por voz.",
+    "code": "22",
+    "price": 200,
+    "status": true,
+    "stock": 18,
+    "category": "audio",
+    "thumbnails": []
+  },
+  {
+    "title": "Monitor Dell UltraSharp 27”",
+    "description": "Monitor con resolución 4K y tecnología de color preciso.",
+    "code": "23",
+    "price": 600,
+    "status": true,
+    "stock": 8,
+    "category": "computación",
+    "thumbnails": []
+  },
+  {
+    "title": "Mochila para cámara Lowepro",
+    "description": "Mochila compacta para llevar cámaras y accesorios fotográficos.",
+    "code": "24",
+    "price": 80,
+    "status": true,
+    "stock": 30,
+    "category": "fotografía",
+    "thumbnails": []
+  },
+  {
+    "title": "Ventilador Rowenta",
+    "description": "Ventilador oscilante con 3 velocidades y bajo nivel de ruido.",
+    "code": "25",
+    "price": 70,
+    "status": true,
+    "stock": 25,
+    "category": "hogar",
+    "thumbnails": []
+  },
+  {
+    "title": "Cargador solar Aukey",
+    "description": "Cargador solar portátil para cargar dispositivos mientras viajas.",
+    "code": "26",
+    "price": 50,
+    "status": true,
+    "stock": 40,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "title": "Impresora HP DeskJet 2732",
+    "description": "Impresora multifuncional inalámbrica con escáner y copiadora.",
+    "code": "27",
+    "price": 90,
+    "status": true,
+    "stock": 50,
+    "category": "computación",
+    "thumbnails": []
+  },
+  {
+    "title": "Reloj Casio G-Shock",
+    "description": "Reloj resistente a golpes con múltiples funciones para outdoors.",
+    "code": "28",
+    "price": 70,
+    "status": true,
+    "stock": 20,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "title": "Tablet Samsung Galaxy Tab A7",
+    "description": "Tablet de 10.4” con pantalla Full HD y 64GB de almacenamiento.",
+    "code": "29",
+    "price": 220,
+    "status": true,
+    "stock": 15,
+    "category": "tecnología",
+    "thumbnails": []
+  },
+  {
+    "title": "Cámara de seguridad Arlo Pro 4",
+    "description": "Cámara de seguridad inalámbrica con visión nocturna y audio bidireccional.",
+    "code": "30",
+    "price": 250,
+    "status": true,
+    "stock": 12,
+    "category": "hogar",
+    "thumbnails": []
+  },
+  {
+    "title": "Gafas de sol Ray-Ban",
+    "description": "Gafas de sol de alta calidad con protección UV.",
+    "code": "31",
+    "price": 150,
+    "status": true,
+    "stock": 45,
+    "category": "accesorios",
+    "thumbnails": []
+  },
+  {
+    "id": 32,
+    "title": "cebolla",
+    "description": "de papa y boniato",
+    "code": "21sfd2s112132f4sd2d1",
+    "price": 58,
+    "stock": 12,
+    "category": "comida",
+    "thumbnails": [],
+    "status": true
+  }
+]

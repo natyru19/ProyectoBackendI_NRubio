@@ -40,3 +40,17 @@ form {
     font-size: 25px;
     text-align: center;
 }
+
+.paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnPaginate {
+    padding: 15px; 
+}
+
+.paginate a {
+    text-decoration: none;
+}

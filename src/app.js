@@ -5,6 +5,7 @@ import viewsRouter from './routes/views.router.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import ProductManager from './managers/product.manager.js';
+import "./database.js"
 
 const app = express();
 const PUERTO = 8080;
