@@ -9,13 +9,17 @@ h1, h2, h3 {
 }
 
 .card {
-    height: 160px;
+    height: 190px;
     background-color: #89A8B2;
     border-radius: 10px;
     border: 1px solid #89A8B2;
     text-align: center;
     padding: 5px;
     margin-bottom: 20px;
+}
+
+.card h2 {
+    color: #F1F0E8;
 }
 
 p {
@@ -53,4 +57,21 @@ form {
 
 .paginate a {
     text-decoration: none;
+}
+
+.divBtnCart {
+    display: flex;
+    justify-self: right;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px;
+    background-color: #F1F0E8;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn:hover {
+    background-color:#d3d3d3d3;
 }

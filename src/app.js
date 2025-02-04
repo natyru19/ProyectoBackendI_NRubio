@@ -9,7 +9,7 @@ import "./database.js"
 
 const app = express();
 const PUERTO = 8080;
-const productManager = new ProductManager('./src/data/products.json');
+const productManager = new ProductManager();
 
 
 // Middleware

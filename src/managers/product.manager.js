@@ -1,84 +1,111 @@
-import { promises as fs } from 'fs';
-import prodIdManager from "../managers/productId.manager.js";
+import ProductsModel from '../models/product.model.js';
 
-const productIdManager = new prodIdManager('./src/data/productLastId.json');
 class ProductManager {
 
-    constructor(path) {
-        this.products = [];
-        this.path = path;
-    }
-
-    
-
-    async init(){
-        try{
-            const exists = await fs.access(this.path);
-        }catch(err){
-            console.log("Se está creando un nuevo archivo: products")
-            await fs.writeFile(this.path, JSON.stringify([]));
+    validateProductFields(newProd){
+        const requiredFields = ['title', 'description', 'code', 'price', 'status', 'stock', 'category'];
+        for(const field of requiredFields){
+            if(!newProd[field]){
+                console.log(`Falta agregar el campo ${field}`);
+                return false;
+            }
         }
-    }
-    
-    async addProduct(newProd) {
-
-        
-        const arrayProducts = await this.readFile();
-        const lastId = productIdManager.readLastId();
-        newProd = {id: lastId+1, ...newProd};
-        
-        
-        if(!newProd.title || !newProd.description || !newProd.code || !newProd.price || !newProd.stock || !newProd.category) {
-            console.log("Falta agregar algún campo");
-            return false;
-        }
-
-        if(arrayProducts.some(item => item.code === newProd.code)) {
-            console.log("El código debe ser único");
-            return false;
-        }
-
-
-        arrayProducts.push(newProd);
-        productIdManager.saveLastId()
-        await this.saveFile(arrayProducts);
         return true;
     }
 
-    async getProducts() {
-        const arrayProducts = await this.readFile();
-        return arrayProducts;
+    async addProduct(newProd) {
+
+        try {
+
+            if(!this.validateProductFields(newProd)) {
+                return false;
+            }
+
+            const existsProd = await ProductsModel.findOne({code : newProd.code});
+
+            if(existsProd) {
+                console.log("El código debe ser único");
+                return false;
+            }
+
+            const newProduct = new ProductsModel({
+                title : newProd.title,
+                description: newProd.description,
+                code: newProd.code,
+                price: newProd.price,
+                status: true,
+                stock: newProd.stock,
+                category: newProd.category,
+                thumbnails: newProd.thumbnails || []
+            });
+
+            await newProduct.save();
+            return newProduct;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getPaginatedProducts({limit=10, page=1, sort='asc', query=''}) {
+        try {
+            let paginatedProducts = []
+            let opts = {limit, page, query}
+            if(sort=="asc"){
+                opts.sort = {price:1}
+            }else if(sort=="desc"){
+                opts.sort = {price:-1}
+            }
+            if(query!=''){
+                paginatedProducts  = await ProductsModel.paginate({category : query}, opts);
+            }else{
+                paginatedProducts  = await ProductsModel.paginate({}, opts);
+            }
+            return  paginatedProducts;
+        } catch (error) {
+            console.log("Hubo un error al obtener los productos paginados", error);
+            throw new Error("Hubo un error al obtener los productos paginados");
+        }
     }
 
     async getProductById(id) {
-        const arrayProducts = await this.readFile();
-        const product = arrayProducts.find(item => item.id === id);
+        try {
+            const product = await ProductsModel.findById(id);
 
-        if(!product) {
-            return false;
-        }else {
             return product;
+
+        } catch (error) {
+            throw error
+        }
+    } 
+
+
+    async updateProduct(id, updatedProd){
+        try {
+            const updatedP = await ProductsModel.findByIdAndUpdate(id, updatedProd, {new: true});
+
+            return updatedP;
+
+        } catch (error) {
+            throw error
         }
     }
 
-    async saveFile(arrayProducts) {
+    async deleteProduct(id) {
         try {
-            await fs.writeFile(this.path, JSON.stringify(arrayProducts, null, 2));
-        } catch (error) {
-            console.log(error);
-        }
-    }
+            const deletedP = await ProductsModel.findByIdAndDelete(id);
 
-    async readFile() {
-        try {
-            const resp = await fs.readFile(this.path, "utf-8");
-            const arrayProducts = JSON.parse(resp);
-            return arrayProducts;
+            if(!deletedP) {
+                throw new Error("No se encontró el producto para eliminar");
+            }else {                
+                return deletedP;
+            }
+            
         } catch (error) {
             console.log(error);
+            throw new Error("Hubo un error al eliminar el producto");
         }
     }
 }
-
 
 export default ProductManager;

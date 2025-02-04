@@ -1,12 +1,17 @@
 
-<h1>Productos agregados hasta el momento: </h1>
+<h1>Productos</h1>
+
+<div class="divBtnCart">
+    <button class="btn">Ir al carrito</button>
+</div>
 
 <div class="containerCards">
     {{#each products}}
         <div class="card">
-            <p>Nombre: {{this.title}}</p>
-            <p>Descripción: {{this.description}}</p>
-            <p>Precio: $ {{this.price}}</p>
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <p>$ {{this.price}}</p>
+            <button class="btn">Agregar al carrito</button>
         </div>
     {{/each}}
 </div>
