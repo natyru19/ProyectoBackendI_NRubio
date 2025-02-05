@@ -13,13 +13,13 @@ cartsRouter.get("/:cid", async (req, res) => {
         const cart = await CartModel.findById(id);
 
         if(!cart){
-            return res.status(404).json({status: "error", error: "No se encontró el carrito"});
+            return res.status(404).json({status: "error", message: "No se encontró el carrito", data: null});
         }
 
-        return res.json({status: "success", products: cart.products});
+        return res.status(200).json({status: "success", message: `Carrito con id: ${id} encontrado correctamente`, data: cart.products});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al obtener el carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }
     
 })
@@ -28,10 +28,14 @@ cartsRouter.get("/:cid", async (req, res) => {
 cartsRouter.post("/", async (req, res)=>{
     try {
         const newCart = await cartManager.createCart();
-        res.status(201).json({status: "success", message: "Se creó el carrito correctamente", newCart});
+
+        if(newCart){
+            return res.status(201).json({status: "success", message: "Se creó el carrito correctamente", data: newCart});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al crear el carrito", data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al crear el carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }        
 });
 
@@ -42,10 +46,13 @@ cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
 
     try {
         const updatedCart = await cartManager.addProductToCart(cartId, prodId, quantity);
-        res.json({status: "success", message: "Se agregó el producto al carrito", products: updatedCart.products});
+        if(updatedCart){
+            return res.status(200).json({status: "success", message: "Se agregó el producto al carrito", products: updatedCart.products});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al agregar el producto al carrito", data: null});
         
     } catch (error) {        
-        res.status(500).json({status: "error", error: "Hubo un error al agregar el producto al carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }
     
 });
@@ -55,11 +62,15 @@ cartsRouter.delete("/:cid/product/:pid", async (req, res) => {
     const prodId = +req.params.pid;
 
     try {
-        const updatedCart = await cartManager.deleteProdToCart(cartId, prodId);
-        res.json({status: "success", message: "Se eliminó el producto del carrito correctamente", updatedCart});
+        const deletedCart = await cartManager.deleteProdToCart(cartId, prodId);
+
+        if(deletedCart){
+            return res.status(200).json({status: "success", message: "Se eliminó el producto del carrito correctamente", deletedCart});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al eliminar el producto del carrito", data: null});
         
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al eliminar el producto del carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -69,10 +80,14 @@ cartsRouter.put("/:cid", async (req, res) => {
 
     try {
         const updatedCart = await cartManager.updateCart(cartId, updatedProd);
-        res.json({status: "success", message: "Se actualizó el carrito correctamente", updatedCart});
+
+        if(updatedCart){
+            return res.status(200).json({status: "success", message: "Se actualizó el carrito correctamente", data: updatedCart});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al actualizar el carrito", data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al actualizar el carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -82,11 +97,15 @@ cartsRouter.put("/:cid/product/:pid", async (req, res) => {
     const newQty = +req.body.quantity;
 
     try {
-        const updatedCart = await cartManager.updateQtyProd(cartId, prodId, newQty);
-        res.json({status: "success", message: "Se actualizó la cantidad del producto correctamente", updatedCart});
+        const updatedQtyProd = await cartManager.updateQtyProd(cartId, prodId, newQty);
+
+        if(updatedCart){
+            return res.status(200).json({status: "success", message: "Se actualizó la cantidad del producto correctamente", updatedQtyProd});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al actualizar la cantidad del producto", data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al actualizar la cantidad del producto"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -94,11 +113,15 @@ cartsRouter.delete("/:cid", async (req, res) => {
     const cartId = +req.params.cid;
 
     try {
-        const updatedCart = await cartManager.clearCart(cartId);
-        res.json({status: "success", message: "Se eliminaron todos los productos del carrito correctamente", updatedCart});
+        const deletedCart = await cartManager.clearCart(cartId);
+
+        if(deletedCart){
+            return res.status(200).json({status: "success", message: "Se eliminaron todos los productos del carrito correctamente", data: deletedCart});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al vaciar el carrito", data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al vaciar el carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
