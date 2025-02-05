@@ -3,7 +3,7 @@ import ProductsModel from '../models/product.model.js';
 class ProductManager {
 
     validateProductFields(newProd){
-        const requiredFields = ['title', 'description', 'code', 'price', 'status', 'stock', 'category'];
+        const requiredFields = ['title', 'description', 'code', 'price', 'stock', 'category'];
         for(const field of requiredFields){
             if(!newProd[field]){
                 console.log(`Falta agregar el campo ${field}`);
@@ -22,23 +22,11 @@ class ProductManager {
             const existsProd = await ProductsModel.findOne({code : newProd.code});
 
             if(existsProd) {
-                console.log("El código debe ser único");
-                return false;
+                throw new Error("El código debe ser único")
             }
 
-            const newProduct = new ProductsModel({
-                title : newProd.title,
-                description: newProd.description,
-                code: newProd.code,
-                price: newProd.price,
-                status: true,
-                stock: newProd.stock,
-                category: newProd.category,
-                thumbnails: newProd.thumbnails || []
-            });
-
-            await newProduct.save();
-            return newProduct;
+            const product = await ProductsModel.create(newProd);
+            return product;
 
         } catch (error) {
             throw error;

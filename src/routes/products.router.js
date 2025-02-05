@@ -79,10 +79,10 @@ productsRouter.post("/", async (req, res) => {
 
     try {
         const newProduct = req.body;
-        let success = await productManager.addProduct(newProduct);
+        const process = await productManager.addProduct(newProduct);
 
-        if(success){
-            return res.status(201).json({status: "success", message: "Se agregó el producto correctamente", data: newProduct});
+        if(process){
+            return res.status(201).json({status: "success", message: "Se agregó el producto correctamente", data: process});
         }
         return res.status(400).json({status: "error", message: "Hubo un error al agregar el producto", data: null});
 

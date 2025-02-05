@@ -18,14 +18,17 @@ const renderProducts = (products) => {
         const card = document.createElement('div');
         card.classList.add("card");
         card.innerHTML = `
-            <p>Nombre: ${item.title}</p>
-            <p>Descripción: ${item.description}</p>
-            <p>Precio: $ ${item.price}</p>
+            <h2>${item.title}</h2>
+            <p>${item.description}</p>
+            <p>$ ${item.price}</p>
             <button>Eliminar</button>
         `
         containerProducts.appendChild(card);
 
-        card.querySelector('button').addEventListener("click", async() => {
+        const deleteButton = card.querySelector('button');
+        deleteButton.classList.add("btn");
+
+        deleteButton.addEventListener("click", async() => {
             await deleteProd(item._id);
         });
     });
@@ -64,7 +67,8 @@ const addNewProduct = async() => {
     }
 
     let response = await fetch(`http://localhost:8080/api/products`, opts)
-    response = await response.json()
+    response = await response.json();
+    
     if(response.error == null){
         socket.emit("addNewProduct");
         Swal.fire(`Se agregó ${response.data.title}`);
