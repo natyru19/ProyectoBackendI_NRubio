@@ -6,6 +6,20 @@ const cartsRouter = Router();
 const cartManager = new CartManager();
 
 
+cartsRouter.get("/", async (req, res) => {
+
+    try {
+        const carts = await cartManager.findCarts(); 
+        if(!carts){
+            return res.status(404).json({status: "error", message: "No se encontraron carritos", data: null});
+        }
+        return res.status(200).json({status: "success", message: `Carritos encontrados`, data: carts});      
+    } catch (error) {
+        return res.status(500).json({status: "error", message: error.message});
+    }
+
+});
+
 cartsRouter.get("/:cid", async (req, res) => {
     let id = req.params.cid;
     
@@ -57,15 +71,15 @@ cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
     
 });
 
-cartsRouter.delete("/:cid/product/:pid", async (req, res) => {
+cartsRouter.delete("/:cid/product/:pid", async (req, res) => { 
     const cartId = req.params.cid;
     const prodId = req.params.pid;
 
     try {
-        const deletedCart = await cartManager.deleteProdToCart(cartId, prodId);
+        const updatedCart = await cartManager.deleteProdFromCart(cartId, prodId)
 
-        if(deletedCart){
-            return res.status(200).json({status: "success", message: "Se eliminó el producto del carrito correctamente", deletedCart});
+        if(updatedCart){
+            return res.status(200).json({status: "success", message: "Se eliminó el producto del carrito correctamente", data: updatedCart});
         }
         return res.status(400).json({status: "error", message: "Hubo un error al eliminar el producto del carrito", data: null});
         
@@ -99,8 +113,8 @@ cartsRouter.put("/:cid/product/:pid", async (req, res) => {
     try {
         const updatedQtyProd = await cartManager.updateQtyProd(cartId, prodId, newQty);
 
-        if(updatedCart){
-            return res.status(200).json({status: "success", message: "Se actualizó la cantidad del producto correctamente", updatedQtyProd});
+        if(updatedQtyProd){
+            return res.status(200).json({status: "success", message: "Se actualizó la cantidad del producto correctamente", data: updatedQtyProd});
         }
         return res.status(400).json({status: "error", message: "Hubo un error al actualizar la cantidad del producto", data: null});
 
@@ -109,21 +123,23 @@ cartsRouter.put("/:cid/product/:pid", async (req, res) => {
     }
 });
 
-cartsRouter.delete("/:cid", async (req, res) => {
+cartsRouter.delete("/:cid", async (req, res) => { //BORRAR EL CARRITO QUE LE PASO
     const cartId = req.params.cid;
 
     try {
-        const deletedCart = await cartManager.clearCart(cartId);
+        const deletedCart = await cartManager.deleteCart(cartId);
 
         if(deletedCart){
-            return res.status(200).json({status: "success", message: "Se eliminaron todos los productos del carrito correctamente", data: deletedCart});
+            return res.status(200).json({status: "success", message: "Se eliminó carrito correctamente", data: deletedCart});
         }
-        return res.status(400).json({status: "error", message: "Hubo un error al vaciar el carrito", data: null});
+        return res.status(400).json({status: "error", message: "Hubo un error al eliminar el carrito", data: null});
 
     } catch (error) {
         return res.status(500).json({status: "error", message: error.message});
     }
 });
+
+cartsRouter.put("/")
 
 
 export default cartsRouter;
