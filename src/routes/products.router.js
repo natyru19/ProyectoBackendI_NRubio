@@ -7,15 +7,19 @@ const productManager = new ProductManager();
 
 productsRouter.get("/", async (req, res) => {
     const {limit=10, page=1, sort, query, id } = req.query;
+
     try {
         if(id){
-            let product = await productManager.getProductById(id)
+            let product = await productManager.getProductById(id);
+
             if(product){
-                return res.status(200).json({status: "success", message : "Producto encontrado", data : product});
-            }
-            return res.status(404).json({status: "error", message : "Producto NO encontrado", data : null})
+                return res.status(200).json({status: "success", message: `Producto con id: ${id} encontrado correctamente`, data: product});
+            }            
+            return res.status(404).json({status: "error", message: `No se encontró el producto con id: ${id}`, data: null});
+
         }else{
-            const products = await productManager.getPaginatedProducts({limit: parseInt(limit),page: parseInt(page), sort, query})
+            const products = await productManager.getPaginatedProducts({limit: parseInt(limit),page: parseInt(page), sort, query});
+            
             let response={
                 status: "success",
                 message: "Productos encontrados",
@@ -50,7 +54,7 @@ productsRouter.get("/", async (req, res) => {
         }
         
     } catch (error) {
-        return res.status(500).json({status: "error", message : error.message});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -61,13 +65,12 @@ productsRouter.get("/:pid", async (req, res) => {
         const searchedProduct = await productManager.getProductById(id);
 
         if(searchedProduct){
-            return res.status(200).json(searchedProduct);
-        } else {
-            return res.status(404).json({status: "error", error: "No se encontró el producto"});
-        }
+            return res.status(200).json({status: "success", message: `Producto con id: ${id} encontrado correctamente`, data: searchedProduct});
+        } 
+        return res.status(404).json({status: "error", message: `No se encontró el producto con id: ${id}`, data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error en el servidor"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 
 })
@@ -79,13 +82,12 @@ productsRouter.post("/", async (req, res) => {
         let success = await productManager.addProduct(newProduct);
 
         if(success){
-            res.status(201).json({status: "success", message: "Se agregó el producto correctamente", newProduct});
-        }else{
-            res.status(500).json({status: "error", error: "Hubo un error al agregar el producto"});
+            return res.status(201).json({status: "success", message: "Se agregó el producto correctamente", data: newProduct});
         }
-    } catch (error) {      
-        console.log(error)  
-        res.status(500).json({status: "error", error: "Hubo un error en el servidor"});
+        return res.status(400).json({status: "error", message: "Hubo un error al agregar el producto", data: null});
+
+    } catch (error) {  
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -94,11 +96,15 @@ productsRouter.put("/:pid", async (req, res) => {
     const updatedProduct = req.body;
 
     try {
-        await productManager.updateProduct(id, updatedProduct);
-        res.status(200).json({status: "success", message: "El producto se actualizó correctamente"});
+        const updatedProd = await productManager.updateProduct(id, updatedProduct);
+
+        if(updatedProd){
+            return res.status(200).json({status: "success", message: "El producto se actualizó correctamente", data: updatedProd});
+        }
+        return res.status(400).json({status: "error", message: "El producto no se actualizó", data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error en el servidor"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -106,11 +112,15 @@ productsRouter.delete("/:pid", async (req, res) => {
     const id = +req.params.pid;
     
     try {
-        await productManager.deleteProduct(id);
-        res.status(200).json({status: "success", message: "Se eliminó el producto correctamente"});
+        const deletedProd = await productManager.deleteProduct(id);
+
+        if(deletedProd){
+            return res.status(200).json({status: "success", message: "Se eliminó el producto correctamente"});
+        }
+        return res.status(400).json({status: "error", message: "El producto no se pudo eliminar", data: null});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error en el servidor"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 

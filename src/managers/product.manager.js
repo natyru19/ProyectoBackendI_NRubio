@@ -14,9 +14,7 @@ class ProductManager {
     }
 
     async addProduct(newProd) {
-
         try {
-
             if(!this.validateProductFields(newProd)) {
                 return false;
             }
@@ -43,7 +41,7 @@ class ProductManager {
             return newProduct;
 
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     }
 
@@ -62,20 +60,19 @@ class ProductManager {
                 paginatedProducts  = await ProductsModel.paginate({}, opts);
             }
             return  paginatedProducts;
-        } catch (error) {
-            console.log("Hubo un error al obtener los productos paginados", error);
-            throw new Error("Hubo un error al obtener los productos paginados");
+
+        } catch (error) {            
+            throw error;
         }
     }
 
     async getProductById(id) {
         try {
             const product = await ProductsModel.findById(id);
-
             return product;
 
         } catch (error) {
-            throw error
+            throw error;
         }
     } 
 
@@ -83,27 +80,20 @@ class ProductManager {
     async updateProduct(id, updatedProd){
         try {
             const updatedP = await ProductsModel.findByIdAndUpdate(id, updatedProd, {new: true});
-
             return updatedP;
 
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 
     async deleteProduct(id) {
         try {
-            const deletedP = await ProductsModel.findByIdAndDelete(id);
-
-            if(!deletedP) {
-                throw new Error("No se encontró el producto para eliminar");
-            }else {                
-                return deletedP;
-            }
+            const deletedP = await ProductsModel.findByIdAndDelete(id);                            
+            return deletedP;
             
-        } catch (error) {
-            console.log(error);
-            throw new Error("Hubo un error al eliminar el producto");
+        } catch (error) {            
+            throw error;
         }
     }
 }
