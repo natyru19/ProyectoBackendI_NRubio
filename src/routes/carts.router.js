@@ -7,7 +7,7 @@ const cartManager = new CartManager();
 
 
 cartsRouter.get("/:cid", async (req, res) => {
-    let id = +req.params.cid;
+    let id = req.params.cid;
     
     try {
         const cart = await CartModel.findById(id);
@@ -40,9 +40,9 @@ cartsRouter.post("/", async (req, res)=>{
 });
 
 cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
-    const cartId = +req.params.cid;
-    const prodId = +req.params.pid;
-    const quantity = +req.body.quantity || 1;    
+    const cartId = req.params.cid;
+    const prodId = req.params.pid;
+    const quantity = req.body.quantity || 1;    
 
     try {
         const updatedCart = await cartManager.addProductToCart(cartId, prodId, quantity);
@@ -58,8 +58,8 @@ cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
 });
 
 cartsRouter.delete("/:cid/product/:pid", async (req, res) => {
-    const cartId = +req.params.cid;
-    const prodId = +req.params.pid;
+    const cartId = req.params.cid;
+    const prodId = req.params.pid;
 
     try {
         const deletedCart = await cartManager.deleteProdToCart(cartId, prodId);
@@ -75,7 +75,7 @@ cartsRouter.delete("/:cid/product/:pid", async (req, res) => {
 });
 
 cartsRouter.put("/:cid", async (req, res) => {
-    const cartId = +req.params.cid;
+    const cartId = req.params.cid;
     const updatedProd = req.body;
 
     try {
@@ -92,9 +92,9 @@ cartsRouter.put("/:cid", async (req, res) => {
 });
 
 cartsRouter.put("/:cid/product/:pid", async (req, res) => {
-    const cartId = +req.params.cid;
-    const prodId = +req.params.pid;
-    const newQty = +req.body.quantity;
+    const cartId = req.params.cid;
+    const prodId = req.params.pid;
+    const newQty = req.body.quantity;
 
     try {
         const updatedQtyProd = await cartManager.updateQtyProd(cartId, prodId, newQty);
@@ -110,7 +110,7 @@ cartsRouter.put("/:cid/product/:pid", async (req, res) => {
 });
 
 cartsRouter.delete("/:cid", async (req, res) => {
-    const cartId = +req.params.cid;
+    const cartId = req.params.cid;
 
     try {
         const deletedCart = await cartManager.clearCart(cartId);

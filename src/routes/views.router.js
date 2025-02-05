@@ -34,7 +34,7 @@ viewsRouter.get("/products", async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al obtener los productos"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 
@@ -43,14 +43,10 @@ viewsRouter.get("/realtimeproducts", (req, res) => {
 });
 
 viewsRouter.get("/carts/:cid", async (req, res) => {
-    const  id = +req.params.cid;
+    const  id = req.params.cid;
 
     try {
-        const cart = await CartManager.getCartById(id);        
-
-        if(!cart){
-            return res.status(404).json({status: "error", error: "No se encontró el carrito"});
-        }
+        const cart = await CartManager.getCartById(id);
 
         const productsToCart = cart.products.map(item => ({
             product: item.product.toObject(),
@@ -60,7 +56,7 @@ viewsRouter.get("/carts/:cid", async (req, res) => {
         res.render("carts", {products: productsToCart});
 
     } catch (error) {
-        res.status(500).json({status: "error", error: "Hubo un error al obtener el carrito"});
+        return res.status(500).json({status: "error", message: error.message});
     }
 });
 

@@ -45,6 +45,16 @@ class ProductManager {
         }
     }
 
+    async getProducts(){
+        try {
+            const products = await ProductsModel.find();
+            return products;
+        } catch (error) {
+            throw error;
+        }
+        
+    }
+
     async getPaginatedProducts({limit=10, page=1, sort='asc', query=''}) {
         try {
             let paginatedProducts = []
