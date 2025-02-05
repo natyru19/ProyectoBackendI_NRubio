@@ -9,7 +9,6 @@ socket.on("products", (data) => {
 const renderProducts = (products) => {
     const containerProducts = document.getElementById('containerProducts');
     containerProducts.innerHTML = "";
-    console.log(products);
     
     if(products.length<1){
         containerProducts.innerHTML = `<p id="pInicial">Agrega tu primer producto</p>`;
@@ -27,7 +26,7 @@ const renderProducts = (products) => {
         containerProducts.appendChild(card);
 
         card.querySelector('button').addEventListener("click", async() => {
-            await deleteProd(item.id);
+            await deleteProd(item._id);
         });
     });
 }
@@ -71,22 +70,22 @@ const addNewProduct = async() => {
         Swal.fire(`Se agregó ${response.data.title}`);
         clearFields();
     }else{
-        Swal.fire("No se pudo agregar el producto, es acá");
+        Swal.fire("No se pudo agregar el producto");
         
     }
 
 }
 
 const deleteProd = async (id) => {
-    let response = await fetch(`http://localhost:8080/api/products/${id}`, {method : 'DELETE'})
-    response = await response.json();
+    const response = await fetch(`http://localhost:8080/api/products/${id}`, {method : 'DELETE'})
+    const responseData = await response.json();
     
-    if(response.error==null){
-        Swal.fire(`Se borró ${response.data.title}`);
+    if(response.status==200){
+        Swal.fire(`Se borró ${responseData.data.title}`);
         socket.emit("deleteProd");
         
     }else{
-        Swal.fire("ERROR EN EL BORRADO");
+        Swal.fire(responseData.message);
     }
 }
 

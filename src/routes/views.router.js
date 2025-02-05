@@ -22,7 +22,7 @@ viewsRouter.get("/products", async (req, res) => {
             }
         )
 
-        res.render("home", {
+        return res.render("home", {
             status: "success",
             products: productsFinal,
             totalPages: paginatedProducts.totalPages,
@@ -39,7 +39,7 @@ viewsRouter.get("/products", async (req, res) => {
 });
 
 viewsRouter.get("/realtimeproducts", (req, res) => {
-    res.render("realTimeProducts");
+    return res.render("realTimeProducts");
 });
 
 viewsRouter.get("/carts/:cid", async (req, res) => {
@@ -53,7 +53,7 @@ viewsRouter.get("/carts/:cid", async (req, res) => {
             quantity: item.quantity
         }));
         
-        res.render("carts", {products: productsToCart});
+        return res.render("carts", {products: productsToCart});
 
     } catch (error) {
         return res.status(500).json({status: "error", message: error.message});

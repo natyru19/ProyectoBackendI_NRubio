@@ -113,9 +113,8 @@ productsRouter.delete("/:pid", async (req, res) => {
     
     try {
         const deletedProd = await productManager.deleteProduct(id);
-
         if(deletedProd){
-            return res.status(200).json({status: "success", message: "Se eliminó el producto correctamente"});
+            return res.status(200).json({status: "success", message: "Se eliminó el producto correctamente", data: deletedProd});
         }
         return res.status(400).json({status: "error", message: "El producto no se pudo eliminar", data: null});
 

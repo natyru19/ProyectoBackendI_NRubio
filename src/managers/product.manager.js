@@ -69,7 +69,7 @@ class ProductManager {
             }else{
                 paginatedProducts  = await ProductsModel.paginate({}, opts);
             }
-            return  paginatedProducts;
+            return paginatedProducts;
 
         } catch (error) {            
             throw error;
