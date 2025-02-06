@@ -110,12 +110,12 @@ cartsRouter.delete("/:cid", async (req, res) => {
     const cartId = req.params.cid;
 
     try {
-        const deletedCart = await cartManager.deleteCart(cartId);
+        const clearedCart = await cartManager.clearCart(cartId);
 
-        if(deletedCart){
-            return res.status(200).json({status: "success", message: "Se eliminó carrito correctamente", data: deletedCart});
+        if(clearedCart){
+            return res.status(200).json({status: "success", message: "Se eliminaron todos los productos del carrito correctamente", data: clearedCart});
         }
-        return res.status(400).json({status: "error", message: "Hubo un error al eliminar el carrito", data: null});
+        return res.status(400).json({status: "error", message: "Hubo un error al vaciar el carrito", data: null});
 
     } catch (error) {
         return res.status(500).json({status: "error", message: error.message});
