@@ -23,7 +23,7 @@ class CartManager {
 
     async findCartById(id) {
         try {            
-            const cart = await CartModel.findById(id);            
+            const cart = await CartModel.findById(id)
             return cart;
         } catch (error) {
             throw error;
@@ -74,15 +74,11 @@ class CartManager {
             if(prodExists){
                 const updatedCart = await CartModel.findByIdAndUpdate(cartId, {products : newProdList})
                 return updatedCart;
-            }   
-
+            }  
             return null;
-
-
             }else{
                 return null;
-            }
-            
+            }            
 
         } catch (error) {
             throw error;

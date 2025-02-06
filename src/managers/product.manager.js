@@ -43,7 +43,7 @@ class ProductManager {
         
     }
 
-    async getPaginatedProducts({limit=10, page=1, sort='asc', query=''}) {
+    async getPaginatedProducts({limit=10, page=1, sort, query=''}) {
         try {
             let paginatedProducts = []
             let opts = {limit, page, query}

@@ -46,14 +46,16 @@ viewsRouter.get("/carts/:cid", async (req, res) => {
     const  id = req.params.cid;
 
     try {
-        const cart = await CartManager.getCartById(id);
+        const cart = await cartManager.findCartById(id);
 
-        const productsToCart = cart.products.map(item => ({
-            product: item.product.toObject(),
-            quantity: item.quantity
+        let products = cart.products
+        products = products.map(item => ({
+            product: item.product.toString(),
+            quantity: item.quantity,
+            _id: item._id.toString()
         }));
         
-        return res.render("carts", {products: productsToCart});
+        return res.render("carts", {products});
 
     } catch (error) {
         return res.status(500).json({status: "error", message: error.message});

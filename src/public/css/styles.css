@@ -75,3 +75,16 @@ form {
 .btn:hover {
     background-color:#d3d3d3d3;
 }
+
+.cardCart {
+    display: flex;
+    flex-direction: column;
+    height: 190px;
+    background-color: #89A8B2;
+    border-radius: 10px;
+    border: 1px solid #89A8B2;    
+    padding: 5px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}

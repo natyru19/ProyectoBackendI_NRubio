@@ -61,7 +61,7 @@ cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
     try {
         const updatedCart = await cartManager.addProductToCart(cartId, prodId, quantity);
         if(updatedCart){
-            return res.status(200).json({status: "success", message: "Se agregó el producto al carrito", products: updatedCart.products});
+            return res.status(200).json({status: "success", message: "Se agregó el producto al carrito", data: updatedCart.products});
         }
         return res.status(400).json({status: "error", message: "Hubo un error al agregar el producto al carrito", data: null});
         
@@ -69,23 +69,6 @@ cartsRouter.post("/:cid/product/:pid", async(req, res)=>{
         return res.status(500).json({status: "error", message: error.message});
     }
     
-});
-
-cartsRouter.delete("/:cid/product/:pid", async (req, res) => { 
-    const cartId = req.params.cid;
-    const prodId = req.params.pid;
-
-    try {
-        const updatedCart = await cartManager.deleteProdFromCart(cartId, prodId)
-
-        if(updatedCart){
-            return res.status(200).json({status: "success", message: "Se eliminó el producto del carrito correctamente", data: updatedCart});
-        }
-        return res.status(400).json({status: "error", message: "Hubo un error al eliminar el producto del carrito", data: null});
-        
-    } catch (error) {
-        return res.status(500).json({status: "error", message: error.message});
-    }
 });
 
 cartsRouter.put("/:cid", async (req, res) => {
@@ -123,7 +106,7 @@ cartsRouter.put("/:cid/product/:pid", async (req, res) => {
     }
 });
 
-cartsRouter.delete("/:cid", async (req, res) => { //BORRAR EL CARRITO QUE LE PASO
+cartsRouter.delete("/:cid", async (req, res) => {
     const cartId = req.params.cid;
 
     try {
@@ -139,7 +122,22 @@ cartsRouter.delete("/:cid", async (req, res) => { //BORRAR EL CARRITO QUE LE PAS
     }
 });
 
-cartsRouter.put("/")
+cartsRouter.delete("/:cid/product/:pid", async (req, res) => { 
+    const cartId = req.params.cid;
+    const prodId = req.params.pid;
+
+    try {
+        const updatedCart = await cartManager.deleteProdFromCart(cartId, prodId)
+
+        if(updatedCart){
+            return res.status(200).json({status: "success", message: "Se eliminó el producto del carrito correctamente", data: updatedCart});
+        }
+        return res.status(400).json({status: "error", message: "Hubo un error al eliminar el producto del carrito", data: null});
+        
+    } catch (error) {
+        return res.status(500).json({status: "error", message: error.message});
+    }
+});
 
 
 export default cartsRouter;
